@@ -1,0 +1,121 @@
+# ##################################################################
+# TWIG
+# ##################################################################
+
+snippet cf "cf - clearfix"
+<div class="clearfix"></div>
+endsnippet
+
+snippet cb "contentblock - twig"
+{% if content_blocks.$1 is not empty %}$2
+{{ content_blocks.$1|raw }}$3
+{% endif %}
+endsnippet
+
+snippet poweredby "poweredby"
+{% include "@core/fdp_powered_by.twig" %}
+endsnippet
+
+snippet cs "contentspace - twig"
+{% if content_spaces.$1 is not empty %}$2
+{{ content_spaces.$1|raw }}$3
+{% endif %}
+endsnippet
+
+snippet locations "locations - twig"
+{% include '@core/fdp_locations.twig' %}
+endsnippet
+
+snippet tnav "navigation"
+{% embed "@core/fdp_navigation.twig" %}
+{% block fdp_navigation %}
+{% set nav_type = 'nav_primary ${1}' %}
+{% set nav_classes = 'nav' %}
+{% set nav_list = fdp_navigation.nav_primary %}
+{{ parent() }}
+{% endblock %}
+{% endembed %}
+endsnippet
+
+snippet tnav.portal "navigation - portal"
+{% if fdp_navigation.nav_portal is not empty %}
+
+<!-- BEGIN nav -->
+{% embed "@core/fdp_navigation.twig" %}
+{% block fdp_navigation %}
+{% set nav_type = 'nav_primary ${1}' %}
+{% set nav_classes = 'nav' %}
+{% set nav_list = fdp_navigation.nav_portal %}
+{{ parent() }}
+{% endblock %}
+{% endembed %}
+<!-- END nav -->
+
+{% else %}
+
+<!-- BEGIN nav -->
+{% embed "@core/fdp_navigation.twig" %}
+{% block fdp_navigation %}
+{% set nav_type = 'nav_primary ${1}' %}
+{% set nav_classes = 'nav' %}
+{% set nav_list = fdp_navigation.nav_primary %}
+{{ parent() }}
+{% endblock %}
+{% endembed %}
+<!-- END nav -->
+
+{% endif %}
+endsnippet
+
+
+
+snippet logo "logo"
+<div class="${1:nav}-logo">
+{% if fdp_logos.${2:1} is not empty %}
+{{ fdp_logos.${2:1}.link|raw }}<img src="{{ fdp_logos.${2:1}.url }}" title="logo" alt="{{ fdp_website_title }}"></a>
+{% else %}
+<a href="/">{{ fdp_website_title }}</a>
+{% endif %}
+</div>
+endsnippet
+
+snippet date "date"
+{{ "now"|date("Y") }}
+endsnippet
+
+snippet policy "policy"
+{% include "@core/fdp_policies.twig" %}
+endsnippet
+
+snippet swift "Swifttype data-include - twig"
+data-swiftype-index="true"
+endsnippet
+
+snippet title "website"
+{{ fdp_website_title }}
+endsnippet
+
+snippet title "page"
+{{ fdp_page_title }}
+endsnippet
+
+# HTML
+# ##################################################################
+snippet cbb "contentblock - html"
+<div class="content-block $1">
+$2
+</div>$3
+endsnippet
+
+
+# Skip to main
+
+snippet skip "Skip To Main"
+<!-- skip to main content link -->
+<div id="skip" class="hidden-visually">
+<a href="#main-content">Skip to main content</a>
+</div>
+<!-- end skip to main content link -->
+endsnippet
+
+

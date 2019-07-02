@@ -1,2 +1,0 @@
-# deovim
-Dockerized neovim

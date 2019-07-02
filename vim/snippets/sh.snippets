@@ -1,0 +1,33 @@
+snippet shebang "bash - shebang"
+#!/usr/bin/env bash
+endsnippet
+
+snippet sarray "array / list"
+${1:list}=(
+
+)
+endsnippet
+
+snippet sloop "loop through a list"
+for file in "${files[@]}"; do
+  echo "${file}"
+done
+endsnippet
+
+snippet git-uncommited-changes "loop an list of directories, and check if they have uncommited changes"
+dirs=(
+./
+)
+for d in "${dirs[@]}"; do
+  echo "${d}"
+  (
+  cd "${d}"
+  echo ">>> ${PWD}"
+  if [[ -z $(git status . -s) ]]; then
+    echo ">>> no changes"
+  else
+    echo ">>> changes"
+  fi
+  )
+done
+endsnippet

@@ -1,0 +1,42 @@
+snippet fun "function"
+function(){
+$0
+});
+endsnippet
+
+snippet req "description"
+const $1 = require('$1');
+endsnippet
+
+snippet fn "arrow function"
+() => {
+$0
+});
+endsnippet
+
+snippet log "console.log"
+console.log($1);
+endsnippet
+
+snippet ch "comment header"
+//##############################################################################
+// $1
+//##############################################################################
+endsnippet
+
+snippet readmore "Read More Link - append link to news container lis"
+// News read more link
+  //##############################################################################
+  $(".news-article").each(function(){
+
+    var link = $(this).find(".news-article-title a").attr("href");
+    var target = $(this).find('.news-article-title a').attr('target');
+
+    if (link) {
+      $(this).find('.news-article-details')
+        .append('<a class="read-more-link" href="'+link+'" target="'+target+'">READ MORE</a>');
+    }
+
+  });
+endsnippet
+

@@ -1,0 +1,19 @@
+snippet blk "blk_cms_page"
+<%= @blk_cms_page.content(${1:0}) %>
+endsnippet
+
+snippet svg "SVG - .sb-hr > .sb-mark"
+<div class="sb-hr${1: fade}">
+	<svg class="icon-sb-mark" aria-labelledby="title">
+		<use xlink:href="<%= IndexHelper.svg_path('tk-icon-sb-mark', 'primary') %>"></use>
+	</svg>
+</div>
+endsnippet
+
+snippet rcs "Rails - contentspace"
+<%= cms_content(${1:0}) %>
+endsnippet
+
+snippet rimg "Rails - image source" i
+<%= webpack_image_path('${0:${VISUAL:image.png}}') %>
+endsnippet
