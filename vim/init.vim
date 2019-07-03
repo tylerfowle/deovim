@@ -149,7 +149,6 @@ source ./vim/plugins/nerdtree.vimrc
 source ./vim/plugins/ctrlp.vimrc
 source ./vim/plugins/indent-guides.vimrc
 source ./vim/plugins/delimitmate.vimrc
-source ./vim/plugins/tasklist.vimrc
 source ./vim/plugins/vim-partial.vimrc
 source ./vim/plugins/neoformat.vimrc
 

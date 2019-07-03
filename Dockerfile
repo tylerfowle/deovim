@@ -1,13 +1,87 @@
+FROM alpine:latest AS BUILDER
+
+RUN apk add --virtual build-deps --update \
+        autoconf \
+        automake \
+        cmake \
+        coreutils \
+        mosquitto \
+        ncurses ncurses-dev ncurses-libs ncurses-terminfo \
+        gcc \
+        g++ \
+        libtool \
+        libuv \
+        linux-headers \
+        lua5.3-dev \
+        m4 \
+        unzip \
+        make
+
+
+RUN apk add --update \
+        curl \
+        git \
+        python \
+        py-pip \
+        python-dev \
+        python3-dev \
+        python3 &&\
+        python3 -m ensurepip && \
+        rm -r /usr/lib/python*/ensurepip && \
+        pip3 install --upgrade pip setuptools && \
+        rm -r /root/.cache
+
+ENV CMAKE_EXTRA_FLAGS=-DENABLE_JEMALLOC=OFF
+WORKDIR /tmp
+
+RUN git clone https://github.com/neovim/libtermkey.git && \
+  cd libtermkey && \
+  make && \
+  make install && \
+  cd ../ && rm -rf libtermkey
+
+RUN git clone https://github.com/neovim/libvterm.git && \
+  cd libvterm && \
+  make && \
+  make install && \
+  cd ../ && rm -rf libvterm
+
+RUN git clone https://github.com/neovim/unibilium.git && \
+  cd unibilium && \
+  make && \
+  make install && \
+  cd ../ && rm -rf unibilium
+
+RUN curl -L https://github.com/neovim/neovim/archive/nightly.tar.gz | tar xz && \
+  cd neovim-nightly && \
+  make && \
+  make install && \
+  cd ../ && rm -rf neovim-nightly
+
+
+
+
+
+
+
+
+
+
+
+
+
 FROM alpine:latest
 MAINTAINER tylerfowle
 WORKDIR /mnt/workspace
+
+COPY --from=BUILDER /home/nvim-linux64/bin/nvim /usr/local/bin/deovim
 
 ENV WORKSPACE="/mnt/workspace" \
     NVIM_RC="/root/.config/nvim/init.vim" \
     NVIM_CONFIG="/root/.config/nvim" \
     NVIM_PCK="/root/.local/share/nvim/site/pack" \
     DOTFILES="/root/dotfiles/" \
-    PLUGINS_COMMON="\
+    PLUGINS_COMMON=" \
     majutsushi/tagbar \
     nathanaelkane/vim-indent-guides \
     vim-airline/vim-airline \
@@ -32,9 +106,7 @@ ENV WORKSPACE="/mnt/workspace" \
     brooth/far.vim \
     tylerfowle/turtle.vim \
     AndrewRadev/switch.vim \
-    vim-scripts/TaskList.vim \
     jbgutierrez/vim-partial \
-    neoclide/coc.nvim --single-branch --branch release \
     w0rp/ale \
     sbdchd/neoformat \
     godlygeek/tabular \
@@ -107,10 +179,14 @@ RUN gem install \
 RUN npm install -g \
     neovim
 
+
 # clone plugin repos
 RUN for i in $PLUGINS_COMMON; do git -C "${NVIM_PCK}/common/start" clone --depth 1 https://github.com/"$i"; done
 RUN for i in $PLUGINS_FILETYPE; do git -C "${NVIM_PCK}/filetype/start" clone --depth 1 https://github.com/"$i"; done
 RUN for i in $PLUGINS_COLORS; do git -C "${NVIM_PCK}/colors/opt" clone --depth 1 https://github.com/"$i"; done
+
+# install coc
+RUN git -C "${NVIM_PCK}/common/start" clone --depth 1 https://github.com/neoclide/coc.nvim --single-branch --branch release
 
 COPY vim/init.vim ${NVIM_CONFIG}/init.vim
 COPY vim ${NVIM_CONFIG}
