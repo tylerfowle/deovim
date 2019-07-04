@@ -1,80 +1,49 @@
-FROM alpine:latest AS BUILDER
-
-RUN apk add --virtual build-deps --update \
-        autoconf \
-        automake \
-        cmake \
-        coreutils \
-        mosquitto \
-        ncurses ncurses-dev ncurses-libs ncurses-terminfo \
-        gcc \
-        g++ \
-        libtool \
-        libuv \
-        linux-headers \
-        lua5.3-dev \
-        m4 \
-        unzip \
-        make
-
-
-RUN apk add --update \
-        curl \
-        git \
-        python \
-        py-pip \
-        python-dev \
-        python3-dev \
-        python3 &&\
-        python3 -m ensurepip && \
-        rm -r /usr/lib/python*/ensurepip && \
-        pip3 install --upgrade pip setuptools && \
-        rm -r /root/.cache
-
+FROM alpine:edge AS BUILDER
+MAINTAINER Krispin Schulz <krispinone@gmail.com>
 ENV CMAKE_EXTRA_FLAGS=-DENABLE_JEMALLOC=OFF
-WORKDIR /tmp
+ENV USER=root
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN apk add --update-cache --virtual build-deps --no-cache \
+    linux-headers alpine-sdk build-base cmake \
+    curl \
+    autoconf \
+    automake \
+    g++ \
+    libc6-dev \
+    libtool \
+    libuv \
+    lua5.3-dev \
+    m4 \
+    make \
+    unzip \
+    libtermkey-dev \
+    lua-sec
 
-RUN git clone https://github.com/neovim/libtermkey.git && \
-  cd libtermkey && \
-  make && \
-  make install && \
-  cd ../ && rm -rf libtermkey
+RUN apk add --update-cache \
+    git \
+    libvterm \
+    libtermkey \
+    unibilium
 
-RUN git clone https://github.com/neovim/libvterm.git && \
-  cd libvterm && \
-  make && \
-  make install && \
-  cd ../ && rm -rf libvterm
-
-RUN git clone https://github.com/neovim/unibilium.git && \
-  cd unibilium && \
-  make && \
-  make install && \
-  cd ../ && rm -rf unibilium
-
-RUN curl -L https://github.com/neovim/neovim/archive/nightly.tar.gz | tar xz && \
-  cd neovim-nightly && \
-  make && \
-  make install && \
-  cd ../ && rm -rf neovim-nightly
-
-
-
-
-
-
-
-
+RUN git clone https://github.com/neovim/neovim.git nvim && \
+    cd nvim && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf nvim && \
+    apk del build-deps
 
 
 
 
 
-FROM alpine:latest
+FROM alpine:edge
 MAINTAINER tylerfowle
 WORKDIR /mnt/workspace
 
-COPY --from=BUILDER /home/nvim-linux64/bin/nvim /usr/local/bin/deovim
+# ENV DEBIAN_FRONTEND noninteractive
+ENV CMAKE_EXTRA_FLAGS=-DENABLE_JEMALLOC=OFF
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 ENV WORKSPACE="/mnt/workspace" \
     NVIM_RC="/root/.config/nvim/init.vim" \
@@ -148,11 +117,25 @@ RUN mkdir -p \
     "${NVIM_CONFIG}" \
     "${DOTFILES}"
 
-RUN apk add --update --no-cache \
+# base
+RUN apk add --update-cache \
     build-base \
-    bash \
-    curl \
-    git \
+    libc6-compat \
+    linux-headers alpine-sdk cmake
+
+# utilities
+RUN apk add --update-cache \
+    bash zsh less ncurses \
+    htop neofetch
+
+# dev utils
+RUN apk add --update-cache \
+    git curl wget \
+    man man-pages \
+    openssh mosh
+
+# lang
+RUN apk add --update --no-cache \
     python \
     python-dev \
     py-pip \
@@ -164,6 +147,7 @@ RUN apk add --update --no-cache \
     nodejs \
     nodejs-npm \
     neovim \
+    neovim-lang \
     neovim-doc
 
 RUN pip install --upgrade \
@@ -179,7 +163,6 @@ RUN gem install \
 RUN npm install -g \
     neovim
 
-
 # clone plugin repos
 RUN for i in $PLUGINS_COMMON; do git -C "${NVIM_PCK}/common/start" clone --depth 1 https://github.com/"$i"; done
 RUN for i in $PLUGINS_FILETYPE; do git -C "${NVIM_PCK}/filetype/start" clone --depth 1 https://github.com/"$i"; done
@@ -187,6 +170,16 @@ RUN for i in $PLUGINS_COLORS; do git -C "${NVIM_PCK}/colors/opt" clone --depth 1
 
 # install coc
 RUN git -C "${NVIM_PCK}/common/start" clone --depth 1 https://github.com/neoclide/coc.nvim --single-branch --branch release
+
+# Clean the cache
+RUN rm -rf /var/cache/apk/*
+
+RUN echo "Welcome to Deovim Container!" > /etc/motd
+
+# RUN ssh-keygen -A
+# EXPOSE 22
+
+RUN chmod -R 777 /usr/local
 
 COPY vim/init.vim ${NVIM_CONFIG}/init.vim
 COPY vim ${NVIM_CONFIG}
