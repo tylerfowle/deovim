@@ -145,4 +145,4 @@ RUN chmod -R 777 /usr/local
 COPY vim/init.vim ${NVIM_CONFIG}/init.vim
 COPY vim ${NVIM_CONFIG}
 
-ENTRYPOINT ["sh"]
+ENTRYPOINT ["nvim", "."]
