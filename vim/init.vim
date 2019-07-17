@@ -1,9 +1,9 @@
 " Tyler Fowle
 " DOTFILES
 
-source ./vim/config/autocommands.vimrc
-source ./vim/config/functions.vimrc
-source ./vim/config/filetypes.vimrc
+source ~/vim/config/autocommands.vimrc
+source ~/vim/config/functions.vimrc
+source ~/vim/config/filetypes.vimrc
 
 " Vars {{{
 
@@ -139,23 +139,23 @@ let g:netrw_winsize = 25
 
 " imports {{{
 
-source ./vim/plugins/ale.vimrc
-source ./vim/plugins/coc.vimrc
-source ./vim/plugins/ultisnips.vimrc
-source ./vim/plugins/airline.vimrc
-source ./vim/plugins/tagbar.vimrc
-source ./vim/plugins/wakatime.vimrc
-source ./vim/plugins/nerdtree.vimrc
-source ./vim/plugins/ctrlp.vimrc
-source ./vim/plugins/indent-guides.vimrc
-source ./vim/plugins/delimitmate.vimrc
-source ./vim/plugins/vim-partial.vimrc
-source ./vim/plugins/neoformat.vimrc
+source ~/vim/plugins/ale.vimrc
+source ~/vim/plugins/coc.vimrc
+source ~/vim/plugins/ultisnips.vimrc
+source ~/vim/plugins/airline.vimrc
+source ~/vim/plugins/tagbar.vimrc
+source ~/vim/plugins/wakatime.vimrc
+source ~/vim/plugins/nerdtree.vimrc
+source ~/vim/plugins/ctrlp.vimrc
+source ~/vim/plugins/indent-guides.vimrc
+source ~/vim/plugins/delimitmate.vimrc
+source ~/vim/plugins/vim-partial.vimrc
+source ~/vim/plugins/neoformat.vimrc
 
 " leader keys
-source ./vim/keymaps/general.vimrc
-source ./vim/keymaps/leader.vimrc
-source ./vim/keymaps/terminal.vimrc
+source ~/vim/keymaps/general.vimrc
+source ~/vim/keymaps/leader.vimrc
+source ~/vim/keymaps/terminal.vimrc
 
 " }}}
 

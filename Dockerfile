@@ -142,7 +142,8 @@ RUN echo "Welcome to Deovim Container!" > /etc/motd
 
 RUN chmod -R 777 /usr/local
 
-COPY vim/init.vim ${NVIM_CONFIG}/init.vim
-COPY vim ${NVIM_CONFIG}
+RUN git clone https://github.com/tylerfowle/deovim.git && \
+    mv deovim/vim/init.vim ${NVIM_CONFIG}/init.vim && \
+    mv deovim/vim ${NVIM_CONFIG}
 
-ENTRYPOINT ["nvim", "."]
+ENTRYPOINT ["nvim"]
