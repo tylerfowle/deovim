@@ -143,7 +143,7 @@ source /root/.config/nvim/vim/plugins/ale.vimrc
 source /root/.config/nvim/vim/plugins/coc.vimrc
 source /root/.config/nvim/vim/plugins/ultisnips.vimrc
 source /root/.config/nvim/vim/plugins/airline.vimrc
-source /root/.config/nvim/vim/vim/plugins/tagbar.vimrc
+source /root/.config/nvim/vim/plugins/tagbar.vimrc
 source /root/.config/nvim/vim/plugins/wakatime.vimrc
 source /root/.config/nvim/vim/plugins/nerdtree.vimrc
 source /root/.config/nvim/vim/plugins/ctrlp.vimrc
