@@ -2,6 +2,9 @@
 set nobackup
 set nowritebackup
 
+" coc extensions
+let g:coc_global_extensions = ["coc-css","coc-dictionary" ,"coc-eslint" ,"coc-highlight" ,"coc-html" ,"coc-json" ,"coc-lists" ,"coc-snippets" ,"coc-solargraph" ,"coc-tag" ,"coc-tsserver" ,"coc-ultisnips" ,"coc-vetur" ,"coc-word"]
+
 " Remap keys for gotos {{{
 
 nmap <silent> gd <Plug>(coc-definition)

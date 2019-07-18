@@ -67,6 +67,8 @@ ENV WORKSPACE="/mnt/workspace" \
     PLUGINS_COLORS=" \
     morhetz/gruvbox \
     srcery-colors/srcery-vim \
+    vim-airline/vim-airline \
+    vim-airline/vim-airline-themes \
     "
 
 # make directories
@@ -146,4 +148,4 @@ RUN git clone https://github.com/tylerfowle/deovim.git && \
     mv deovim/vim/init.vim ${NVIM_CONFIG}/init.vim && \
     mv deovim/vim ${NVIM_CONFIG}
 
-ENTRYPOINT ["nvim"]
+ENTRYPOINT ["bash"]

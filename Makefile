@@ -9,6 +9,9 @@ help:
 build:
 	docker build --rm -t ${IMAGENAME} .
 
+clean-build:
+	docker build --no-cache --rm -t ${IMAGENAME} .
+
 run:
 	docker run -ti --rm -v ${PWD}:/mnt/workspace --name ${CONTAINERNAME} ${IMAGENAME}
 
