@@ -88,8 +88,11 @@ RUN apk add --update-cache \
 
 # utilities
 RUN apk add --update-cache \
-    bash zsh less ncurses \
+    bash zsh less ncurses ctags \
     htop neofetch
+
+RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    ripgrep
 
 # dev utils
 RUN apk add --update-cache \
@@ -139,13 +142,27 @@ RUN rm -rf /var/cache/apk/*
 
 RUN echo "Welcome to Deovim Container!" > /etc/motd
 
-# RUN ssh-keygen -A
-# EXPOSE 22
-
 RUN chmod -R 777 /usr/local
 
 RUN git clone https://github.com/tylerfowle/deovim.git && \
     mv deovim/vim/init.vim ${NVIM_CONFIG}/init.vim && \
     mv deovim/vim ${NVIM_CONFIG}
 
-ENTRYPOINT ["bash"]
+ENV COC_EXTENSIONS="coc-css \
+    coc-dictionary \
+    coc-eslint \
+    coc-highlight \
+    coc-html \
+    coc-json \
+    coc-lists \
+    coc-snippets \
+    coc-solargraph \
+    coc-tag \
+    coc-tsserver \
+    coc-ultisnips \
+    coc-vetur \
+    coc-word"
+
+RUN nvim -c "CocInstall -sync ${COC_EXTENSIONS}|q"
+
+ENTRYPOINT ["nvim", "."]
