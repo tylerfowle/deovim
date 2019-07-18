@@ -80,28 +80,29 @@ RUN mkdir -p \
     "${NVIM_CONFIG}" \
     "${DOTFILES}"
 
-# base
 RUN apk add --update-cache \
+    # base
     build-base \
     libc6-compat \
-    linux-headers alpine-sdk cmake
-
-# utilities
-RUN apk add --update-cache \
+    linux-headers alpine-sdk cmake \
+    # utilities
+    && \
+    apk add --update-cache \
     bash zsh less ncurses ctags \
-    htop neofetch
-
-RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    ripgrep
-
-# dev utils
-RUN apk add --update-cache \
+    htop neofetch \
+    # dev utils
+    && \
+    apk add --update-cache \
     git curl wget \
     man man-pages \
-    openssh mosh
-
-# lang
-RUN apk add --update --no-cache \
+    openssh mosh \
+    # testing packages
+    && \
+    apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+    ripgrep \
+    # lang
+    && \
+    apk add --update --no-cache \
     python \
     python-dev \
     py-pip \
@@ -116,17 +117,21 @@ RUN apk add --update --no-cache \
     neovim-lang \
     neovim-doc
 
-RUN pip install --upgrade \
+RUN \
+    # python packages
+    pip install --upgrade \
     pip \
     pynvim \
     && pip3 install --upgrade \
     pip \
-    pynvim
-
-RUN gem install \
-    neovim
-
-RUN npm install -g \
+    pynvim \
+    && \
+    # ruby gems
+    gem install \
+    neovim \
+    && \
+    # npm packages
+    npm install -g \
     neovim
 
 # clone plugin repos
@@ -138,11 +143,13 @@ RUN for i in $PLUGINS_COLORS; do git -C "${NVIM_PCK}/colors/opt" clone --depth 1
 RUN git -C "${NVIM_PCK}/common/start" clone --depth 1 https://github.com/neoclide/coc.nvim --single-branch --branch release
 
 # Clean the cache
-RUN rm -rf /var/cache/apk/*
-
-RUN echo "Welcome to Deovim Container!" > /etc/motd
-
-RUN chmod -R 777 /usr/local
+# set a motd
+# change permissions
+RUN rm -rf /var/cache/apk/* \
+    && \
+    echo "Welcome to Deovim Container!" > /etc/motd \
+    && \
+    chmod -R 777 /usr/local
 
 RUN git clone https://github.com/tylerfowle/deovim.git && \
     mv deovim/vim/init.vim ${NVIM_CONFIG}/init.vim && \
