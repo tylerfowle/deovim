@@ -2,10 +2,15 @@
 set nobackup
 set nowritebackup
 
+" COC-Explorer {{{
+nmap ge :CocCommand explorer<CR>
+nmap <leader>n :CocCommand explorer<CR>
+" }}}
+
 " Remap keys for gotos {{{
 
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gtd <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
@@ -13,6 +18,8 @@ nmap <silent> gr <Plug>(coc-references)
 
 
 " Using CocList {{{
+" old ctrlp keybind - added because muscle memory
+nnoremap <silent> <leader>f  :<C-u>CocList files<cr>
 
 nnoremap <silent> <space>l  :<C-u>CocList<cr>
 nnoremap <silent> <space>m  :<C-u>CocList mru<cr>

@@ -38,4 +38,5 @@ autocmd BufWrite {*.scss,*.erb} if rchrome | silent! :!refresh-chrome | endif
 au InsertLeave * set nopaste
 
 " ft specific indent
-autocmd FileType {html,php,inc,javascript,ruby,erb} setlocal shiftwidth=4 tabstop=4
+autocmd FileType {html,php,inc,javascript} setlocal shiftwidth=4
+autocmd FileType {ruby,erb,scss,less,css} setlocal shiftwidth=2

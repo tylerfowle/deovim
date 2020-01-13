@@ -12,38 +12,32 @@ ENV WORKSPACE="/mnt/workspace" \
     NVIM_PCK="/root/.local/share/nvim/site/pack" \
     DOTFILES="/root/dotfiles/" \
     PLUGINS_COMMON=" \
-    majutsushi/tagbar \
-    nathanaelkane/vim-indent-guides \
-    vim-airline/vim-airline \
-    vim-airline/vim-airline-themes \
-    airblade/vim-gitgutter \
-    junegunn/vim-peekaboo \
-    junegunn/limelight.vim \
-    ctrlpvim/ctrlp.vim \
     ton/vim-bufsurf \
     junegunn/vim-easy-align \
     tpope/vim-repeat \
     tpope/vim-surround \
     tpope/vim-commentary \
     tpope/vim-fugitive \
+    tpope/vim-rhubarb \
     tpope/vim-ragtag \
-    raimondi/delimitmate \
     bronson/vim-trailing-whitespace \
     google/vim-searchindex \
     markonm/traces.vim \
     triglav/vim-visual-increment \
     mileszs/ack.vim \
     brooth/far.vim \
-    tylerfowle/turtle.vim \
     AndrewRadev/switch.vim \
     jbgutierrez/vim-partial \
+    liuchengxu/vista.vim \
+    nathanaelkane/vim-indent-guides \
+    vim-airline/vim-airline \
+    vim-airline/vim-airline-themes \
+    airblade/vim-gitgutter \
+    junegunn/vim-peekaboo \
+    junegunn/limelight.vim \
     w0rp/ale \
     sbdchd/neoformat \
     godlygeek/tabular \
-    scrooloose/nerdtree \
-    Xuyuanp/nerdtree-git-plugin \
-    ryanoasis/vim-devicons \
-    tiagofumo/vim-nerdtree-syntax-highlight \
     mattn/emmet-vim \
     sirver/ultisnips \
     honza/vim-snippets \
@@ -52,17 +46,16 @@ ENV WORKSPACE="/mnt/workspace" \
     othree/html5.vim \
     othree/javascript-libraries-syntax.vim \
     pangloss/vim-javascript \
-    kchmck/vim-coffee-script \
     JulesWang/css.vim \
     cakebaker/scss-syntax.vim \
     lumiliet/vim-twig \
     vim-ruby/vim-ruby \
-    jwalton512/vim-blade \
     posva/vim-vue \
     plasticboy/vim-markdown \
     mzlogin/vim-markdown-toc \
     shime/vim-livedown \
-    fatih/vim-go \
+    mustache/vim-mustache-handlebars \
+    StanAngeloff/php.vim \
     " \
     PLUGINS_COLORS=" \
     morhetz/gruvbox \

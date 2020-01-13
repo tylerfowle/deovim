@@ -6,6 +6,7 @@
 let b:ale_linters = {
       \ 'bash': ['shellcheck'],
       \ 'python': ['flake8'],
+      \ 'php': ['phpcs']
       \ }
 
 let g:ale_fixers = {
@@ -23,5 +24,6 @@ let b:ale_fixers = {
       \ 'trim_whitespace',
       \ 'isort',
       \ 'yapf',
+      \ 'phpcbf'
       \ ]
       \ }

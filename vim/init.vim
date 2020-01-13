@@ -138,19 +138,19 @@ let g:netrw_winsize = 25
 
 
 " imports {{{
-
+source /root/.config/nvim/vim/plugins/airline.vimrc
 source /root/.config/nvim/vim/plugins/ale.vimrc
 source /root/.config/nvim/vim/plugins/coc.vimrc
-source /root/.config/nvim/vim/plugins/ultisnips.vimrc
-source /root/.config/nvim/vim/plugins/airline.vimrc
-source /root/.config/nvim/vim/plugins/tagbar.vimrc
-source /root/.config/nvim/vim/plugins/wakatime.vimrc
-source /root/.config/nvim/vim/plugins/nerdtree.vimrc
-source /root/.config/nvim/vim/plugins/ctrlp.vimrc
-source /root/.config/nvim/vim/plugins/indent-guides.vimrc
 source /root/.config/nvim/vim/plugins/delimitmate.vimrc
-source /root/.config/nvim/vim/plugins/vim-partial.vimrc
+source /root/.config/nvim/vim/plugins/gitgutter.vimrc
+source /root/.config/nvim/vim/plugins/indent-guides.vimrc
+source /root/.config/nvim/vim/plugins/jedi.vimrc
 source /root/.config/nvim/vim/plugins/neoformat.vimrc
+source /root/.config/nvim/vim/plugins/supertab.vimrc
+source /root/.config/nvim/vim/plugins/tagbar.vimrc
+source /root/.config/nvim/vim/plugins/ultisnips.vimrc
+source /root/.config/nvim/vim/plugins/vim-partial.vimrc
+source /root/.config/nvim/vim/plugins/vista.vimrc
 
 " leader keys
 source /root/.config/nvim/vim/keymaps/general.vimrc

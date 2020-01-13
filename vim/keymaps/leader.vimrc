@@ -1,11 +1,12 @@
 " Leader Shortcuts {{{
 
 " open _settings.scss
-nnoremap <localleader>s 100<C-w>l:vsplit<cr>:set wfw<cr>:vertical resize 80<cr>:find **/_settings.scss<cr>
+" nnoremap <localleader>s 100<C-w>l:vsplit<cr>:set wfw<cr>:vertical resize 80<cr>:find **/_settings.scss<cr>
+nnoremap <localleader>s :silent !stylelint --fix %<cr>
 
 " time snips
 nmap <leader>dt :r !date "+\%a \%b \%d \%Y"<cr>I##<space><esc>o<esc>
-nmap <leader>dd :r !date "+\%a \%b \%d \%Y"<cr>I##<space><esc>o<esc><leader>dnin<tab><esc>o11:11 \| firestarter<esc>o11:30 \| ⬆ lunch<esc>:Tabularize /\|<cr>j
+nmap <leader>dd :r !date "+\%a \%b \%d \%Y"<cr>I##<space><esc>o<esc><leader>dnin<tab><esc>o11:30 \| ⬆ lunch<esc>:Tabularize /\|<cr>j
 nmap <leader>dn :r !date +"\%T"<cr>A<space>\|<space>
 nmap <leader>td }j"zyt {k"xyt j:r !timediff <c-r>z <c-r>x<cr> A \| Total<esc>
 nmap <leader>tc }j"zyt {k"xyt j:r !timecalc <c-r>z <c-r>x<cr> A \| Total<esc>
@@ -61,6 +62,9 @@ nnoremap <leader>gf :ALEFix<cr>
 " Prettydiff
 nnoremap <localleader>f :PrettyDiff<cr>
 
+" Vista window
+nnoremap <localleader>v :Vista!!<cr>
+
 " create file under from path under cursor relative to current buffer
 nnoremap <silent> <leader>cf :e <cfile>.scss<CR>
 nnoremap <localleader>cf :e <cfile><CR>
@@ -108,9 +112,6 @@ nnoremap <leader><esc> :noh<CR>
 " select all and copy to clipboard
 nmap <leader>a :%y+<CR>
 
-" CtrlP - find files
-nnoremap <leader>f :CtrlP<CR>
-nnoremap <leader><space> :CtrlPLine<CR>
 
 " Buffer navigation like a browser
 if !empty(glob("~/.dotfiles/vim.symlink/plugged/vim-bufsurf/plugin/bufsurf.vim"))
@@ -163,16 +164,12 @@ nnoremap <C-H> <C-W><C-H>
 " open file under cursor in vertical split
 nnoremap <leader>wf :vertical wincmd f<CR>
 
-" Set working directory
-nnoremap <leader>. :lcd %:p:h<CR>:CtrlPClearAllCaches<CR>
-
 " Display current file in the NERDTree ont the left
-nmap <silent> <leader>n :NERDTreeFind<CR><c-w>=
+" nmap <silent> <leader>n :NERDTreeFind<CR><c-w>=
+" map <C-n> :NERDTreeToggle<CR><c-w>=
 
-" open v split
+" oped v split
 nmap <leader>v :vsp<CR>
-" open h split
-nmap <leader>h :sp<CR>
 
 " }}}
 "

@@ -7,6 +7,7 @@ let g:partial_templates_roots = [
       \ 'build',
       \ 'scss',
       \ 'build/scss',
+      \ 'app/assets/*'
       \ ]
 
 vnoremap <localleader>x :PartialExtract<cr>

@@ -2,6 +2,6 @@
 " Filetypes
 " ##############################################################################
 
-au! FileType python source /root/.config/nvim/vim/filetype/python.vim
-au! FileType terminal source /root/.config/nvim/vim/filetype/terminal.vim
-au! FileType javascript source /root/.config/nvim/vim/filetype/javascript.vim
+au! FileType python source $DOTFILES/vim/filetype/python.vim
+au! FileType terminal source $DOTFILES/vim/filetype/terminal.vim
+au! FileType javascript source $DOTFILES/vim/filetype/javascript.vim

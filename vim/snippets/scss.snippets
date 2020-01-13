@@ -203,13 +203,37 @@ snippet xlu "xlarge-up"
 }
 endsnippet
 
+snippet bps "breakpoint sizes"
+// $small: 480px;
+// $medium: 760px;
+// $large: 900px;
+// $x-large: 1080px;
+endsnippet
+
+snippet ms "min-width small"
+// $small: 480px;
+@media (min-width: $small) {
+  $1
+}
+endsnippet
+
 snippet mm "min-width medium"
+//$medium: 760px;
 @media (min-width: $medium) {
   $1
 }
 endsnippet
+
 snippet ml "min-width large"
+// $large: 900px;
 @media (min-width: $large) {
+  $1
+}
+endsnippet
+
+snippet mxl "min-width x-large"
+// $x-large: 1080px;
+@media (min-width: $x-large) {
   $1
 }
 endsnippet
@@ -238,9 +262,9 @@ endsnippet
 
 snippet tkbody "body"
 @include tk-body(
-  $name: '${1:default|large|large-quote|small|mini}-sans',
-  $name: '${2:default|large|large-quote|small}-serif',
-  $em-reference: ${3:$baseFontSize}
+  $name: '${1:default|large|large-quote|small|mini}-${2:sans|serif}',
+  $name: '${3:default|large|large-quote|small}-serif',
+  $em-reference: ${4:$baseFontSize}
 );
 endsnippet
 
