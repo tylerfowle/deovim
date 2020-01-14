@@ -149,12 +149,15 @@ RUN git clone https://github.com/tylerfowle/deovim.git && \
 ENV COC_EXTENSIONS="coc-css \
     coc-dictionary \
     coc-eslint \
+    coc-explorer \
     coc-highlight \
     coc-html \
     coc-json \
     coc-lists \
+    coc-pairs \
     coc-snippets \
     coc-solargraph \
+    coc-stylelint \
     coc-tag \
     coc-tsserver \
     coc-ultisnips \
