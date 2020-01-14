@@ -115,7 +115,12 @@ set foldclose=all
 
 set autoread         " auto reload changed files
 set modelines=1      " check the last line for file specific settings
+
 set path+=build/scss " for searching
+set path+=./*-website-*/**/ " for searching
+set path+=app/assets/**/* " for searching
+set path+=./**/
+
 
 " }}}
 
@@ -129,8 +134,9 @@ let g:python_highlight_all = 1
 
 " netrw {{{
 
-let g:netrw_gx="<cWORD>"       " use whole words when opening URLs.
+let g:netrw_gx="<cWORD>"   " use whole words when opening URLs.
 let g:netrw_liststyle = 3
+let g:netrw_altv = 1
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
@@ -138,6 +144,7 @@ let g:netrw_winsize = 25
 
 
 " imports {{{
+"
 source /root/.config/nvim/vim/plugins/airline.vimrc
 source /root/.config/nvim/vim/plugins/ale.vimrc
 source /root/.config/nvim/vim/plugins/coc.vimrc
@@ -175,7 +182,6 @@ colorscheme gruvbox
 if has('nvim')
   hi Normal guibg=g:tf_background
   hi SignColumn guibg=g:tf_background
-  hi CursorLine guibg=g:tf_background
   hi Folded guibg=g:tf_background
   " customize matching paren colors
   hi MatchParen guifg=#000000 guibg=#fc802d
