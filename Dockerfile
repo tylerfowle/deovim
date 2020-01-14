@@ -60,8 +60,6 @@ ENV WORKSPACE="/mnt/workspace" \
     PLUGINS_COLORS=" \
     morhetz/gruvbox \
     srcery-colors/srcery-vim \
-    vim-airline/vim-airline \
-    vim-airline/vim-airline-themes \
     "
 
 # make directories
