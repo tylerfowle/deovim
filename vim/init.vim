@@ -13,6 +13,7 @@ let maplocalleader = ';'
 
 " set a global var for custom bg color
 let g:tf_background="#202020"
+let g:tf_cursorline="#35312f"
 
 " }}}
 
@@ -183,6 +184,7 @@ if has('nvim')
   hi Normal guibg=g:tf_background
   hi SignColumn guibg=g:tf_background
   hi Folded guibg=g:tf_background
+  hi CursorLine guibg=g:tf_cursorline
   " customize matching paren colors
   hi MatchParen guifg=#000000 guibg=#fc802d
 endif
