@@ -21,13 +21,6 @@ nnoremap <localleader><space> za
 " limelight toggle
 nnoremap <localleader>l :Limelight!!<cr>
 
-" vim plug
-nnoremap <localleader>r :so $MYVIMRC<CR>
-nnoremap <localleader>pu :PlugUpdate<CR>
-nnoremap <localleader>pp :PlugUpgrade<CR>
-nnoremap <localleader>pi :PlugInstall<CR>
-nnoremap <localleader>pc :PlugClean<CR>
-
 "background toggle light and dark
 map <localleader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
@@ -179,29 +172,6 @@ nmap <leader>v :vsp<CR>
 vnoremap iv :<C-U>silent! normal! bbve<CR>
 onoremap iv :silent! normal bbve<CR>
 " }}}
-
-
-" Floobits shortcuts {{{
-nnoremap <leader>lj :FlooJoinWorkspace https://floobits.com/tylerfowle/workspace<CR>
-nnoremap <leader>ll :FlooLeaveWorkspace<CR>
-
-nnoremap <leader>ls :FlooSummon<CR>
-nnoremap <leader>lc :FlooClearHighlights<CR>
-
-nnoremap <leader>lf :FlooFollow<CR>
-nnoremap <leader>lt :FlooToggleFollowMode<CR>
-
-nnoremap <leader>lp :FlooShareDirPrivate %<CR>
-nnoremap <leader>lr :FlooRefreshWorkspace<CR>
-" }}}
-
-
-" Dash maps {{{
-
-nnoremap <leader>ds <Plug>DashSearch<CR>
-
-" }}}
-
 
 " Tag Shortcuts {{{
 
